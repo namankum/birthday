@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>생일 축하 웹페이지</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: url('https://img.freepik.com/free-vector/happy-birthday-concept_23-2148468288.jpg?w=1920') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+    }
+
+    #container {
+      text-align: center;
+      animation: sparkle 2s infinite alternate;
+      margin-top: 20vh; /* 조정 가능 */
+    }
+
+    #birthday-heading {
+      font-size: 3em;
+      color: #ff6347; /* Tomato color */
+    }
+
+    #cake-image {
+      width: 300px; /* 조정 가능 */
+      margin-top: 20px; /* 조정 가능 */
+      animation: sparkle 2s infinite alternate;
+    }
+
+    #birthday-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      transform: rotate(-45deg);
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(-45deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      document.body.appendChild(heart);
+
+      const startPositionX = Math.random() * window.innerWidth;
+      const startPositionY = -20;
+
+      const randomColor = getRandomColor();
+
+      heart.style.left = startPositionX + 'px';
+      heart.style.top = startPositionY + 'px';
+      heart.style.backgroundColor = randomColor;
+
+      setTimeout(() => {
+        document.body.removeChild(heart);
+      }, 3000);
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+  <div id="container">
+    <h1 id="birthday-heading">생일 축하합니다!</h1>
+    <img id="cake-image" src="https://img.freepik.com/free-vector/happy-birthday-concept_23-2148468288.jpg?w=740&t=st=1704704205~exp=1704704805~hmac=c0fea1e89f5c54404c71fd3e30421fb1cc6723f9ba455af0c33a7c71b0c42625" alt="생일 케이크 이미지">
+    <p id="birthday-message">행복한 한 해가 되길 바라며, 즐거운 생일을 보내세요!</p>
+  </div>
+</body>
+</html>
